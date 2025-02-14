@@ -65,4 +65,9 @@ class PetController extends Controller
     {
         return $pet->user;
     }
+
+    public function getPetsByPet(Pet $pet)
+    {
+        return $pet->user->pets;
+    }
 }
