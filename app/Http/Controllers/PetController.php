@@ -60,4 +60,9 @@ class PetController extends Controller
         $pet->delete();
         return response()->json(['message' => 'Pet deleted']);
     }
+
+    public function getUser(Pet $pet)
+    {
+        return $pet->user;
+    }
 }
