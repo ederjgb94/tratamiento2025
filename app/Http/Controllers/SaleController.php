@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sale;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SaleController extends Controller
 {
@@ -20,7 +21,24 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $barcode = Str::random(10);
+        $sale = new Sale();
+        $sale->barcode = $barcode;
+        $sale->total = $request->total;
+        $sale->user_id = $request->user_id;
+        $sale->save();
+
+        $products = $request->products;
+
+        // $sale->products()->sync($products, true);
+        
+        foreach ($products as $product) {
+            $sale->products()->attach($product['product_id'], [
+                'quantity' => $product['quantity']
+            ]);
+        }
+
+        return response()->json(['message' => 'Venta creada con éxito', 'barcode' => $barcode]);
     }
 
     /**
