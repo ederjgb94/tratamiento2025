@@ -19,6 +19,7 @@ class SaleFactory extends Factory
         return [
             'barcode' => $this->faker->ean13,
             'total' => $this->faker->randomFloat(2, 1, 1000),
+            'user_id' => $this->faker->numberBetween(1, 10),
         ];
     }
 }

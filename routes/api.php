@@ -20,6 +20,7 @@ Route::apiResource('pets', 'App\Http\Controllers\PetController');
 Route::get('/pets/{pet}/user', 'App\Http\Controllers\PetController@getUser');
 Route::get('/pets/{pet}/pets', 'App\Http\Controllers\PetController@getPetsByPet');
 
+Route::post('/sales', 'App\Http\Controllers\SaleController@store');
 // Route::get('/pets', 'App\Http\Controllers\PetController@index');
 // Route::post('/pets', 'App\Http\Controllers\PetController@store');
 // Route::get('/pets/{pet}', 'App\Http\Controllers\PetController@show');
